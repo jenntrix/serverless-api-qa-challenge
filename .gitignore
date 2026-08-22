@@ -42,3 +42,6 @@ yarn-error.log*
 
 # webpack
 .webpack
+
+#ts files
+.build/

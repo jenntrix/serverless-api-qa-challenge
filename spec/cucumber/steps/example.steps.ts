@@ -1,4 +1,4 @@
-import { binding, then, when } from 'cucumber-tsflow';
+/*import { binding, then, when } from 'cucumber-tsflow';
 
 @binding()
 export class ScenarioSteps {
@@ -8,4 +8,4 @@ export class ScenarioSteps {
     console.log(' Test is returning true');
     return;
   }
-}
+}*/

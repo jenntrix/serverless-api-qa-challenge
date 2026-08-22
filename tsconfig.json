@@ -5,8 +5,8 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["esnext"],
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "module": "node16",
+    "moduleResolution": "node16",
     "outDir": ".build",
     "preserveConstEnums": true,
     "rootDir": "./",
@@ -17,5 +17,5 @@
     "strict": true
   },
   "exclude": ["node_modules", "tests", "scripts"],
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts"]//, "spec/cucumber/steps/example/example.steps.ts"]
 }
