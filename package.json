@@ -14,7 +14,8 @@
     "test:cucumber": "tsc && ./node_modules/@cucumber/cucumber/bin/cucumber-js features",
     "test:regression": "npx cucumber-js --tags 'not @bug-found'",
     "test:login": "npx cucumber-js --tags '@login'",
-    "test:sum": "npx cucumber-js --tags '@sum'"
+    "test:sum": "npx cucumber-js --tags '@sum'",
+    "test:defects": "npx cucumber-js --tags '@bug-found'"
   },
   "keywords": [],
   "author": "",
