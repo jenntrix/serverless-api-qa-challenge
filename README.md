@@ -551,3 +551,8 @@ https://github.com/IoFinnet/qa-challenge
 The original application code and challenge requirements belong to IoFinnet.
 
 This repository contains my independent QA implementation, automated coverage, findings, compatibility fixes, CI configuration, and Docker setup created for study, practice, and portfolio purposes.
+
+## Author
+
+**Jennifer Herrera**  
+QA Engineer / SDET
