@@ -32,19 +32,26 @@ export class LoginSteps {
               .set('password', testData.password);
       }
 
-  @then('the response status should be {int}')
-      public verifyResponseStatus(status: number): void {
-        expect(this.response.status).to.equal(status);
-  }
+  @when('I login with no password')
+      public async loginWithNoPassword(): Promise<void> {
+        this.response = await request('http://localhost:3000')
+              .post('/loginaction')
+              .set('username', testData.username);
+      }
 
-  @then('the response should contain a valid token')
-      public verifyValidToken(): void {
-      expect(this.response.body.result).to.equal(testData.token);
-  }
+  @then('the login response status should be {int}')
+        public verifyResponseLoginStatus(status: number): void {
+            expect(this.response.status).to.equal(status);
+    }
 
-  @then('the response should indicate unauthorized access')
-      public verifyErrorMessage(): void {
-      expect(this.response.body.result).to.equal('You are not Authorized');
-  }
+  @then('the login response should contain a valid token')
+        public verifyValidToken(): void {
+        expect(this.response.body.result).to.equal(testData.token);
+    }
+
+  @then('the login response should indicate unauthorized access')
+        public verifyErrorMessage(): void {
+        expect(this.response.body.result).to.equal('You are not Authorized');
+    }
 
 }

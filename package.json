@@ -12,7 +12,9 @@
     "test:offline": "ts-node scripts/runIntegTestsOffline.ts",
     "exec:offline": "dotenv -e ./.test-offline-env -- cucumber-js -p default",
     "test:cucumber": "tsc && ./node_modules/@cucumber/cucumber/bin/cucumber-js features",
-    "test:regression": "npx cucumber-js --tags 'not @known-bug'"
+    "test:regression": "npx cucumber-js --tags 'not @bug-found'",
+    "test:login": "npx cucumber-js --tags '@login'",
+    "test:sum": "npx cucumber-js --tags '@sum'"
   },
   "keywords": [],
   "author": "",

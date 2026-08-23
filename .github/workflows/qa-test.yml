@@ -1,0 +1,58 @@
+name: API QA Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '14.21.3'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Start Serverless Offline
+        run: |
+          npx serverless offline > serverless.log 2>&1 &
+          echo $! > serverless.pid
+
+      - name: Wait for API
+        run: |
+          for i in {1..30}; do
+            if curl --silent --fail               -X POST http://localhost:3000/loginaction               -H "username: bob"               -H "password: P@55w0rd" > /dev/null; then
+              echo "API is ready"
+              exit 0
+            fi
+
+            echo "Waiting for API..."
+            sleep 2
+          done
+
+          echo "API did not start successfully"
+          cat serverless.log
+          exit 1
+
+      - name: Run regression tests
+        run: npx cucumber-js --tags "not @bug-found"
+
+      - name: Run known bug scenarios
+        continue-on-error: true
+        run: npx cucumber-js --tags "@bug-found"
+
+      - name: Show Serverless logs on failure
+        if: failure()
+        run: cat serverless.log
